@@ -8,16 +8,12 @@ namespace Lista_Adyacencia_PND
         public static void Main(string[] args)
         {
 
-            GrafoPND a = new GrafoPND(3);
+            GrafoPND a = new GrafoPND(4);
 
-            a.AgregarVertice(0, 'A');
-            a.AgregarVertice(1, 'B');
-            a.AgregarVertice(2, 'C');
-
-            a.Agregar('A','B', 10);
-            a.Agregar('A','C', 20);
-            a.Agregar('B', 'A', 5);
-            a.Agregar('C','A', 5);
+            a.Agregar(0,2,2);
+            a.Agregar(2,3,3);
+            a.Agregar(0, 3, 1);
+            a.Agregar(1,3, 4);
             a.mostrar();
         }
     }

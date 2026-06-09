@@ -8,13 +8,16 @@ namespace Lista_Adyacencia
 {
     internal class Nodo
     {
-        private int dirección;
-        private int peso;
-        private Nodo siguiente;
-    
-        public int Dirección { get => dirección; set => dirección = value; }
-        public int Peso { get => peso; set => peso = value; }
-        internal Nodo Siguiente { get => siguiente; set => siguiente = value; }
+        public int Direccion { get ; set; }
+        public int Peso { get; set; }
+        public Nodo Siguiente { get; set; }
+        public Nodo Anterior { get; set; }
 
+        public Nodo(int direccion, int peso) {
+            Direccion = direccion;
+            Peso = peso;
+            Siguiente = null;
+            Anterior = null;
+        }
     }
 }

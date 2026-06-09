@@ -8,57 +8,33 @@ namespace Lista_Adyacencia
 {
     internal class GrafoPND
     {
-        private Lista[] Lista_A;
-        private char[] vertices;
+        private ListaE[] Lista_A;
+        private int vertices;
 
-        public GrafoPND(int cantidadPND)
-        {
-            Lista_A = new Lista[cantidadPND];
-            vertices = new char[cantidadPND];
+        public GrafoPND(int cantidadPND){
+            Lista_A = new ListaE[cantidadPND];
+            vertices = cantidadPND;
 
-            for (int i = 0; i < cantidadPND; i++)
-            {
-                Lista_A[i] = new Lista();
-                vertices[i] = '\0'; 
+            for (int i = 0; i < cantidadPND; i++){
+                Lista_A[i] = new ListaE();
             }
         }
 
-        public void AgregarVertice(int posicion, char marca)
-        {
-            vertices[posicion] = marca;
-        }
-        public void Agregar(char origen, char destino, int peso)
-        {
-            int iOrigen = BuscarMarca(origen);
-            int iDestino = BuscarMarca(destino);
-
-            if (iOrigen == -1 || iDestino == -1)
-            {
-                Console.WriteLine("No existe la marca");
+        public void Agregar(int origen, int destino, int peso){
+            if (origen >= vertices || destino >= vertices) {
+                Console.WriteLine("Origen o destino fuera de la cantidad permitida");
                 return;
             }
-
-            Lista_A[iOrigen].insertar(iDestino, peso);
+            Lista_A[origen].insertar(destino, peso);
+            Lista_A[destino].insertar(origen, peso);
         }
-        public void mostrar()
-        {
+        public void mostrar(){
             int i = 0;
-            foreach(Lista elemento in Lista_A)
-            {
+            foreach(ListaE elemento in Lista_A){
                 Console.WriteLine($"Lista {i}:");
-                elemento.mostrar(vertices);
+                elemento.mostrar();
                 i++;
             }
-        }
-        public int BuscarMarca(char marca)
-        {
-            for (int i = 0; i < vertices.Length; i++)
-            {
-                if (vertices[i] == marca)
-                    return i;
-            }
-
-            return -1;
         }
     }
 }
